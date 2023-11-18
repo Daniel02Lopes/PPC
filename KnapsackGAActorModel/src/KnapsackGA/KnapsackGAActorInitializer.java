@@ -1,25 +1,28 @@
 package KnapsackGA;
 
 import library.Actor;
+import library.Address;
 import library.Message;
 
 import java.util.Random;
 
 public class KnapsackGAActorInitializer extends Actor {
-    private Individual[] population;
-    private Random r = new Random();
+
+    public KnapsackGAActorInitializer(Address address) {
+        super(address);
+    }
 
     @Override
     protected void handleMessage(Message m) {
-        if (m instanceof InitializePopulationRMessage mi) {
-            System.out.println("Receive InitializePopulationRMessage");
+        System.out.println("Initialize");
+        if (m instanceof InitializePopulationRMessage) {
             Individual individual;
-            for (int i = 0; i < mi.getPop_size(); i++) {
-                individual = Individual.createRandom(r);
-                getAddress().sendMessage(new SendPopulationValuesMessage(i, individual));
-                population[i] = individual;
+            for (int i = 0; i < getPopSize(); i++) {
+                individual = Individual.createRandom(getR());
+                getPopulation()[i] = individual;
+                getSupervisor().sendMessage(new SendPopulationValuesMessage(i, individual));
             }
-
+            getSupervisor().sendMessage(new GenerationIsFinish());
         }
     }
 }

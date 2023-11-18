@@ -1,29 +1,28 @@
 package KnapsackGA;
 
 import library.Actor;
+import library.Address;
 import library.Message;
 import library.SystemKillMessage;
 
 public class KnapsackGAActorMeasureFitness extends Actor {
-    private int size;
-    Individual[] population;
+    public KnapsackGAActorMeasureFitness(Address address) {
+        super(address);
+    }
+
     @Override
     protected void handleMessage(Message m) {
 
-        if (m instanceof MeasureFitnessMessage) {
-            for (int i = 0; i < size; i++) {
-                population[i].measureFitness();
-                getAddress().sendMessage(new SendPopulationValuesMessage(i,population[i]));
+        if (m instanceof MeasureFitnessMessage mi) {
+            System.out.println("Measure Fitnesss");
+            for (int i = 0; i < getPopSize(); i++) {
+                getPopulation()[i].measureFitness();
+                getSupervisor().sendMessage(new SendPopulationValuesMessage(i,getPopulation()[i]));
             }
-
-            getAddress().sendMessage(new FindBestIndividualMessage());
+            getSupervisor().sendMessage(new FindBestIndividualMessage(mi.getCounterGen()));
         }
-        else if(m instanceof InitializePopulationRMessage mi){
-            this.size = mi.getPop_size();
-        }
-
         else if (m instanceof SendPopulationValuesMessage m1) {
-                population[m1.getIndex()] = m1.getIndividual();
+                getPopulation()[m1.getIndex()] = m1.getIndividual();
         }
     }
 }
