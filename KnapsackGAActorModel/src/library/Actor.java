@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public abstract class Actor extends Thread {
-    private static final int N_GENERATIONS = 500;
+    private static final int N_GENERATIONS = 2;
     private static final int POP_SIZE = 100000;
     private static final double PROB_MUTATION = 0.5;
     private static final int TOURNAMENT_SIZE = 3;

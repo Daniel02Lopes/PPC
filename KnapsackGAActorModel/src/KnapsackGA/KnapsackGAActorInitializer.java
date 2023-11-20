@@ -14,7 +14,6 @@ public class KnapsackGAActorInitializer extends Actor {
 
     @Override
     protected void handleMessage(Message m) {
-        System.out.println("Initialize");
         if (m instanceof InitializePopulationRMessage) {
             Individual individual;
             for (int i = 0; i < getPopSize(); i++) {

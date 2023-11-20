@@ -15,7 +15,6 @@ public class KnapsackGAActorMutate extends Actor {
         if(m instanceof SendPopulationValuesMessage mi)
             getPopulation()[mi.getIndex()]=mi.getIndividual();
         else if(m instanceof MutatePopultionMessage mi){
-            System.out.println("Mutate");
             // Step4 - Mutate
             for (int i = 1; i < getPopSize(); i++) {
                 if (getR().nextDouble() < getProbMutation()) {

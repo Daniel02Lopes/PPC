@@ -16,7 +16,6 @@ public class KnapsackGAActorCrossOver extends Actor {
     @Override
     protected void handleMessage(Message m) {
         if(m instanceof SendBestIndividualMessage mi){
-            System.out.println("Cross Over");
             newPopulation[0] = mi.getBest(); // The best individual remains
             for (int i = 1; i < getPopSize(); i++) {
                 // We select two parents, using a tournament.
