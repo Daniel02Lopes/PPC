@@ -3,6 +3,7 @@ package KnapsackGA;
 import library.Actor;
 import library.Address;
 import library.Message;
+import library.SystemKillMessage;
 
 import java.util.Random;
 
@@ -22,6 +23,7 @@ public class KnapsackGAActorInitializer extends Actor {
                 getSupervisor().sendMessage(new SendPopulationValuesMessage(i, individual));
             }
             getSupervisor().sendMessage(new GenerationIsFinish());
+            this.getAddress().sendMessage(new SystemKillMessage());
         }
     }
 }
