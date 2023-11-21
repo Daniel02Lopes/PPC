@@ -10,9 +10,7 @@ import java.io.IOException;
 import java.util.Random;
 
 public class KnapsackGAManager extends Actor {
-    private static int counterGen=-1;
-    private static long startTime;
-    private static long endTime;
+    private int counterGen=-1;
     private KnapsackGAActorMutate kam ;
     private KnapsackGAActorCrossOver kaco;
     private KnapsackGAActorBestIndividual kabi ;
@@ -30,7 +28,6 @@ public class KnapsackGAManager extends Actor {
     @Override
     protected void handleMessage(Message m) {
         if (m instanceof BootstrapMessage) {
-            startTime = System.nanoTime();
             kai.getAddress().sendMessage(new InitializePopulationRMessage());
         }
         else if(m instanceof SendPopulationValuesMessage) {
@@ -40,21 +37,18 @@ public class KnapsackGAManager extends Actor {
         else if(m instanceof GenerationIsFinish) {
             if (counterGen < getnGenerations()) {
                 if (counterGen == getnGenerations()-1){
-                    endTime = System.nanoTime();
                     kamf.getAddress().sendMessage(new SystemKillMessage());
                     kabi.getAddress().sendMessage(new SystemKillMessage());
                     kaco.getAddress().sendMessage(new SystemKillMessage());
                     kam.getAddress().sendMessage(new SystemKillMessage());
                     this.getAddress().sendMessage(new SystemKillMessage());
                 }
-                counterGen++;
-                kamf.getAddress().sendMessage(new MeasureFitnessMessage(counterGen));
+                else{
+                    counterGen++;
+                    kamf.getAddress().sendMessage(new MeasureFitnessMessage(counterGen));
+                }
             }
         }
-    }
-
-    public long getExecutionTime() {
-        return endTime-startTime;
     }
 
 }
