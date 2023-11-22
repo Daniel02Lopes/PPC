@@ -9,10 +9,10 @@ from scipy.stats import mannwhitneyu, wilcoxon, kruskal, friedmanchisquare
 ## Assignment #1: Genetic Algorithm for the Knapsack Problem
 ## PPC
 
-data = pd.read_csv('execution_times.csv') 
-#data2 = pd.read_csv('KnapsackGAActorModelExecutionTimes.csv')
-#data['KnapsackGAActorModelTime(ns)'] = data2['KnapsackGAActorModelTime(ns)']
-
+data = pd.read_csv('data/execution_times.csv') 
+data2 = pd.read_csv('data/KnapsackGAActorModelExecutionTimes.csv')
+data['KnapsackGAActorModelTime(ns)'] = data2['KnapsackGAActorModelTime(ns)']
+mean_KnapsackGAActorModelTime= data['KnapsackGAActorModelTime(ns)'].mean()
 #data.to_csv("execution_times.csv", index=False)
 
 
@@ -39,11 +39,16 @@ data['ParallelPhaser8ThreadsImprovement(%)'] = (sequential_time - data['Parallel
 data['ParallelPhaser16ThreadsImprovement(%)'] = (sequential_time - data['ParallelPhaserTimeExecutionWith16Threads(ns)']) / sequential_time * 100
 data['KnapsackGAActorModelImprovement(%)'] = (sequential_time - data['KnapsackGAActorModelTime(ns)']) / sequential_time * 100
 
+mean_KnapsackGAActorModelImprovement = data['KnapsackGAActorModelImprovement(%)'].mean()
+
+
 
 columns_to_plot = ['Parallel2ThreadsImprovement(%)', 'Parallel4ThreadsImprovement(%)',
                    'Parallel8ThreadsImprovement(%)', 'Parallel16ThreadsImprovement(%)',
                    'ParallelPhaser2ThreadsImprovement(%)', 'ParallelPhaser4ThreadsImprovement(%)',
                    'ParallelPhaser8ThreadsImprovement(%)', 'ParallelPhaser16ThreadsImprovement(%)','KnapsackGAActorModelImprovement(%)']
+
+
 
 plt.figure(figsize=(10, 8))
 data_to_plot = data[columns_to_plot]
@@ -127,5 +132,10 @@ else:
     print('Wilcoxon: There is no statistically significant difference between Sequential and 2Threads.\n')
     
     
+print("################# ASSIGNMENT 3##############")
+print("Tempo de execução médio:",mean_KnapsackGAActorModelTime)
+print("Valor médio de improvement:",mean_KnapsackGAActorModelImprovement)
+
+
 
 
