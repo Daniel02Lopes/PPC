@@ -18,13 +18,13 @@ public class KnapsackGAActorCrossOver extends Actor {
     protected void handleMessage(Message m) {
         if(m instanceof SendBestIndividualMessage mi){
             newPopulation[0] = mi.getBest(); // The best individual remains
-            getSupervisor().sendMessage(new SendIndividual(0,mi.getBest()));
+            getSupervisor().sendMessage(new SendIndividualMessage(0,mi.getBest()));
             for (int i = 1; i < getPopSize(); i++) {
                 // We select two parents, using a tournament.
                 Individual parent1 = tournament(getTournamentSize(), getR());
                 Individual parent2 = tournament(getTournamentSize(), getR());
                 newPopulation[i] = parent1.crossoverWith(parent2, getR());
-                getSupervisor().sendMessage(new SendIndividual(i,newPopulation[i]));
+                getSupervisor().sendMessage(new SendIndividualMessage(i,newPopulation[i]));
             }
             getSupervisor().sendMessage(new MutatePopultionMessage());
         }

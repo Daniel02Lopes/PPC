@@ -16,7 +16,7 @@ public class KnapsackGAActorMeasureFitness extends Actor {
         if (m instanceof MeasureFitnessMessage mi) {
             getSupervisor().sendMessage(new SendPopulationMessage(getPopulation(),mi.getCounterGen()));
         }
-        else if (m instanceof SendIndividual m1) {
+        else if (m instanceof SendIndividualMessage m1) {
                 getPopulation()[m1.getIndex()] = m1.getIndividual();
                 getPopulation()[m1.getIndex()].measureFitness();
         }

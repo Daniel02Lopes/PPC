@@ -19,7 +19,7 @@ public class KnapsackGAActorInitializer extends Actor {
             Individual individual;
             for (int i = 0; i < getPopSize(); i++) {
                 individual = Individual.createRandom(getR());
-                getSupervisor().sendMessage(new SendIndividual(i, individual));
+                getSupervisor().sendMessage(new SendIndividualMessage(i, individual));
             }
             getSupervisor().sendMessage(new MeasureFitnessMessage(0));
             this.getAddress().sendMessage(new SystemKillMessage());

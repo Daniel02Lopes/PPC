@@ -30,7 +30,7 @@ public class KnapsackGAManager extends Actor {
         if (m instanceof BootstrapMessage) {
             kai.getAddress().sendMessage(new InitializePopulationRMessage());
         }
-        else if(m instanceof SendIndividual) {
+        else if(m instanceof SendIndividualMessage) {
             if (counterGen < getnGenerations())
                 kamf.getAddress().sendMessage(m);
         }

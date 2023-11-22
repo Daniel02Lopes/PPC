@@ -12,11 +12,11 @@ public class KnapsackGAActorMutate extends Actor {
 
     @Override
     protected void handleMessage(Message m) {
-        if(m instanceof SendIndividual mi) {
+        if(m instanceof SendIndividualMessage mi) {
             getPopulation()[mi.getIndex()] = mi.getIndividual();
             if (getR().nextDouble() < getProbMutation()) {
                 getPopulation()[mi.getIndex()].mutate(getR());
-                this.getSupervisor().sendMessage(new SendIndividual(mi.getIndex(), getPopulation()[mi.getIndex()]));
+                this.getSupervisor().sendMessage(new SendIndividualMessage(mi.getIndex(), getPopulation()[mi.getIndex()]));
             }
         }
         else if(m instanceof MutatePopultionMessage){
