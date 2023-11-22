@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Random;
 
 public class KnapsackGAManager extends Actor {
-    private int counterGen=-1;
+    private int counterGen=0;
     private KnapsackGAActorMutate kam ;
     private KnapsackGAActorCrossOver kaco;
     private KnapsackGAActorBestIndividual kabi ;
@@ -22,7 +22,7 @@ public class KnapsackGAManager extends Actor {
          kaco = new KnapsackGAActorCrossOver(kam.getAddress());
          kabi = new KnapsackGAActorBestIndividual(kaco.getAddress());
          kamf = new KnapsackGAActorMeasureFitness(kabi.getAddress());
-         kai = new KnapsackGAActorInitializer(this.getAddress());
+         kai = new KnapsackGAActorInitializer(kamf.getAddress());
     }
 
     @Override

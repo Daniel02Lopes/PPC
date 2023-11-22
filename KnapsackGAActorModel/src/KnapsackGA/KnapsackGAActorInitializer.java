@@ -22,7 +22,7 @@ public class KnapsackGAActorInitializer extends Actor {
                 getPopulation()[i] = individual;
                 getSupervisor().sendMessage(new SendPopulationValuesMessage(i, individual));
             }
-            getSupervisor().sendMessage(new GenerationIsFinish());
+            getSupervisor().sendMessage(new MeasureFitnessMessage(0));
             this.getAddress().sendMessage(new SystemKillMessage());
         }
     }

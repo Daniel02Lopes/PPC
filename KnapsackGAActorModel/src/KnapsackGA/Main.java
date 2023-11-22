@@ -24,6 +24,7 @@ public class Main {
 				e.printStackTrace();
 			}
 			long endTime= System.nanoTime();
+			System.out.println(endTime-startTime);
 			sb.append(i).append(",").append(endTime-startTime).append("\n");
 			writer.write(sb.toString());
 
