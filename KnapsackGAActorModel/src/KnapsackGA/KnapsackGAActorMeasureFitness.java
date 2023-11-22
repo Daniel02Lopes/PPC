@@ -14,14 +14,13 @@ public class KnapsackGAActorMeasureFitness extends Actor {
     protected void handleMessage(Message m) {
 
         if (m instanceof MeasureFitnessMessage mi) {
-            for (int i = 0; i < getPopSize(); i++) {
-                getPopulation()[i].measureFitness();
-                getSupervisor().sendMessage(new SendPopulationValuesMessage(i,getPopulation()[i]));
-            }
-            getSupervisor().sendMessage(new FindBestIndividualMessage(mi.getCounterGen()));
+            getSupervisor().sendMessage(new SendPopulationMessage(getPopulation(),mi.getCounterGen()));
         }
         else if (m instanceof SendPopulationValuesMessage m1) {
                 getPopulation()[m1.getIndex()] = m1.getIndividual();
+                getPopulation()[m1.getIndex()].measureFitness();
+            //System.out.println();
+            //getSupervisor().sendMessage(new SendPopulationValuesMessage(m1.getIndex(),getPopulation()[m1.getIndex()]));
         }
     }
 }

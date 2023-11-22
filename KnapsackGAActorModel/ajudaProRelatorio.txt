@@ -1,0 +1,7 @@
+Overhead do Modelo de Ator: O modelo de ator envolve a comunicação entre atores por meio de mensagens. Cada ator possui sua própria caixa de correio (mailbox), e as mensagens são enfileiradas e processadas sequencialmente. Esse processo de enviar, receber e processar mensagens pode introduzir overhead adicional em comparação com a sincronização direta entre threads, especialmente em cenários onde há muita comunicação entre atores.
+
+Custo de Troca de Mensagens: Em alguns casos, a troca de mensagens entre atores pode ser mais custosa do que o compartilhamento de memória e sincronização direta entre threads. Isso é especialmente verdadeiro se as mensagens forem grandes ou se houver uma alta frequência de troca de mensagens, o que pode causar latência adicional.
+
+Escalabilidade: Dependendo da implementação do modelo de ator e da maneira como os atores são distribuídos e tratados, pode haver limitações de escalabilidade. Por exemplo, se um grande número de atores estiver competindo por recursos limitados, isso pode resultar em gargalos e diminuição de desempenho.
+
+Complexidade do Modelo de Ator: Em comparação com o uso direto de threads e sincronização, a programação no modelo de ator pode ser mais complexa, exigindo uma compreensão mais profunda do funcionamento do modelo e podendo resultar em implementações menos otimizadas se não forem utilizadas corretamente.
