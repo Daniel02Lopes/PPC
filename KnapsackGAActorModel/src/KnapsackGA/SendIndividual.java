@@ -2,10 +2,10 @@ package KnapsackGA;
 
 import library.Message;
 
-public class SendPopulationValuesMessage extends Message {
+public class SendIndividual extends Message {
         private final int index;
         private final Individual individual;
-    public SendPopulationValuesMessage(int i, Individual individual) {
+    public SendIndividual(int i, Individual individual) {
             this.index=i;
             this.individual=individual;
     }
