@@ -1,7 +1,36 @@
-Overhead do Modelo de Ator: O modelo de ator envolve a comunicação entre atores por meio de mensagens. Cada ator possui sua própria caixa de correio (mailbox), e as mensagens são enfileiradas e processadas sequencialmente. Esse processo de enviar, receber e processar mensagens pode introduzir overhead adicional em comparação com a sincronização direta entre threads, especialmente em cenários onde há muita comunicação entre atores.
+5 SonarCloud
 
-Custo de Troca de Mensagens: Em alguns casos, a troca de mensagens entre atores pode ser mais custosa do que o compartilhamento de memória e sincronização direta entre threads. Isso é especialmente verdadeiro se as mensagens forem grandes ou se houver uma alta frequência de troca de mensagens, o que pode causar latência adicional.
+The system underwent analysis using SonarCloud, an extension of GitHub, to assess its quality attributes. The tool evaluates Reliability, Security, Security Hotspots, and Maintainability on a grading scale from E to A.
 
-Escalabilidade: Dependendo da implementação do modelo de ator e da maneira como os atores são distribuídos e tratados, pode haver limitações de escalabilidade. Por exemplo, se um grande número de atores estiver competindo por recursos limitados, isso pode resultar em gargalos e diminuição de desempenho.
+Reliability:
+Rating: D
+Bugs (336):
+Frontend (Angular - 73 bugs): These bugs might impact the user experience on the client interface, such as rendering issues, unresponsive interactions, or logic errors in the Angular frontend.
+Backend (Node.js/Express.js - 263 bugs): Backend bugs could lead to server failures, like data handling errors, inadequate input validation, or security issues exploitable by malicious users.
+Severity: High (2), Medium (298), Low (36):
+Issues with high severity typically hold greater priority and might pose serious threats to system stability, security, or functionality. Medium and low-severity bugs indicate less critical issues but still demand attention.
 
-Complexidade do Modelo de Ator: Em comparação com o uso direto de threads e sincronização, a programação no modelo de ator pode ser mais complexa, exigindo uma compreensão mais profunda do funcionamento do modelo e podendo resultar em implementações menos otimizadas se não forem utilizadas corretamente.
+Maintainability:
+Rating: A
+Code Smells (202):
+Frontend (Angular - 117 code smells): Code smells may pinpoint code areas that are hard to understand, maintained in a complex manner, or could be optimized for better readability and maintainability.
+Backend (Node.js - 85 code smells): Maintenance issues in the backend might affect scalability, efficiency, or code readability, making it harder to maintain and expand.
+Severity: High (35), Medium (74), Low (93):
+High severity code smells often signify more critical issues needing immediate attention, like hard-to-understand code, potential security flaws, or errors impacting future maintenance.
+
+Security:
+Rating: E
+Severity: High (2):
+Backend (MongoDB - 2): The recommendation to change and remove database passwords from the code is critical for security. These exposed passwords could lead to security breaches and unauthorized access to the database.
+
+Security Review:
+Rating: E
+Security Hotspots (40):
+Backend (37 Security Hotspots): This might indicate specific areas in the backend code requiring immediate attention due to potential security vulnerabilities.
+
+Duplications:
+Backend (3.2%); Frontend (1.7%):
+Duplications: Despite relatively low percentages, code duplications can lead to unnecessary complexity, making maintenance difficult and introducing more opportunities for errors.
+
+In summary, enhancing code reliability, maintainability, and security is crucial. Addressing bugs, refactoring areas with code smells, dealing with security issues, reducing duplications, and tackling critical security points are important steps to improve the quality of your online game store project.
+

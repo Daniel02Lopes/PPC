@@ -13,7 +13,7 @@ data = pd.read_csv('data/execution_times.csv')
 data2 = pd.read_csv('data/KnapsackGAActorModelExecutionTimes.csv')
 data['KnapsackGAActorModelTime(ns)'] = data2['KnapsackGAActorModelTime(ns)']
 mean_KnapsackGAActorModelTime= data['KnapsackGAActorModelTime(ns)'].mean()
-#data.to_csv("execution_times.csv", index=False)
+data.to_csv("data/execution_times.csv", index=False)
 
 
 print(data.head)
@@ -29,6 +29,8 @@ plt.show()
 
 ######################### Box plot of perfomance improvement###################################
 sequential_time = data['SequentialExecutionTime(ns)']
+sequential_time_mean = data['SequentialExecutionTime(ns)'].mean()
+print(sequential_time_mean)
 data['Parallel2ThreadsImprovement(%)'] = (sequential_time - data['ParallelExecutionTime2Threads(ns)']) / sequential_time * 100
 data['Parallel4ThreadsImprovement(%)'] = (sequential_time - data['ParallelExecutionTime4Threads(ns)']) / sequential_time * 100
 data['Parallel8ThreadsImprovement(%)'] = (sequential_time - data['ParallelExecutionTime8Threads(ns)']) / sequential_time * 100
@@ -38,6 +40,7 @@ data['ParallelPhaser4ThreadsImprovement(%)'] = (sequential_time - data['Parallel
 data['ParallelPhaser8ThreadsImprovement(%)'] = (sequential_time - data['ParallelPhaserTimeExecutionWith8Threads(ns)']) / sequential_time * 100
 data['ParallelPhaser16ThreadsImprovement(%)'] = (sequential_time - data['ParallelPhaserTimeExecutionWith16Threads(ns)']) / sequential_time * 100
 data['KnapsackGAActorModelImprovement(%)'] = (sequential_time - data['KnapsackGAActorModelTime(ns)']) / sequential_time * 100
+
 
 mean_KnapsackGAActorModelImprovement = data['KnapsackGAActorModelImprovement(%)'].mean()
 
